@@ -53,35 +53,47 @@ namespace MCPacker
             {
                 iwayname.Text = "ZIP";
                 ilaunchercb.Enabled = true;
+                pkgnamebox.Visible = false;
+                pkgnamel.Visible = false;
             }
             if (iwayselector.Value == 1)
             {
                 iwayname.Text = "SDP";
                 ilaunchercb.Checked = false;
                 ilaunchercb.Enabled = false;
+                pkgnamebox.Visible = true;
+                pkgnamel.Visible = true;
             }
             if (iwayselector.Value == 2)
             {
                 iwayname.Text = "HMCL";
                 ilaunchercb.Enabled = true;
+                pkgnamebox.Visible = false;
+                pkgnamel.Visible = false;
             }
             if (iwayselector.Value == 3)
             {
                 iwayname.Text = "Mod与配置";
                 ilaunchercb.Checked = false;
                 ilaunchercb.Enabled = false;
+                pkgnamebox.Visible = false;
+                pkgnamel.Visible = false;
             }
             if (iwayselector.Value == 4)
             {
                 iwayname.Text = "Mod,配置,资源包";
                 ilaunchercb.Checked = false;
                 ilaunchercb.Enabled = false;
+                pkgnamebox.Visible = false;
+                pkgnamel.Visible = false;
             }
             if (iwayselector.Value == 5)
             {
                 iwayname.Text = "仅Mod";
                 ilaunchercb.Checked = false;
                 ilaunchercb.Enabled = false;
+                pkgnamebox.Visible = false;
+                pkgnamel.Visible = false;
             }
         }
 
@@ -135,10 +147,18 @@ namespace MCPacker
             if (iwayselector.Value == 1)
             {
                 status.Text = "SDP模式";
+                MessageBox.Show("开发中!可能无法正常使用!", "WARN");
+                //qwq.Enabled = true;
+                //status.Text = "[空闲]";
+                Thread thread = new Thread(SDPacker);
+                thread.Start();
             }
             if (iwayselector.Value == 2)
             {
                 status.Text = "HMCL模式";
+                MessageBox.Show("开发中!","qwq");
+                qwq.Enabled = true;
+                status.Text = "[空闲]";
             }
             if (iwayselector.Value == 3)
             {
@@ -227,6 +247,7 @@ namespace MCPacker
             catch { }
             task.Text = "完成!";
             qwq.Enabled = true;
+            status.Text = "[空闲]";
         }
 
         private void MCfgPacker()
@@ -250,6 +271,7 @@ namespace MCPacker
             catch { }
             task.Text = "完成!";
             qwq.Enabled = true;
+            status.Text = "[空闲]";
         }
 
         private void MCResPacker()
@@ -265,7 +287,7 @@ namespace MCPacker
             CopyFolder(".\\.minecraft\\resourcepacks", ".\\working\\.minecraft\\resourcepacks");
             string[] delist = File.ReadAllLines(".\\buffer.list");
             deleter(delist);
-            Zippp(".\\working\\.minecraft", ".\\output\\mods_" + verbox.Text + ".zip");
+            Zippp(".\\working\\.minecraft", ".\\output\\mods+res_" + verbox.Text + ".zip");
             task.Text = "清理...";
             try
             {
@@ -274,6 +296,42 @@ namespace MCPacker
             catch { }
             task.Text = "完成!";
             qwq.Enabled = true;
+            status.Text = "[空闲]";
+        }
+
+        private void SDPIGen(string ver,string name,string outpath)
+        {
+            task.Text = "生成信息";
+            if (!System.IO.Directory.Exists(outpath))
+            {
+                System.IO.Directory.CreateDirectory(outpath);
+            }
+            string[] info = {name,ver,"dev.inf",ver,"f"};
+            File.WriteAllLines(outpath + "\\install.set", info);
+        }
+
+        private void SDPacker()
+        {
+            task.Text = "清理...";
+            try
+            {
+                Directory.Delete(".\\working", true);
+            }
+            catch { }
+            CopyFolder(".\\.minecraft", ".\\working\\.minecraft");
+            string[] delist = File.ReadAllLines(".\\buffer.list");
+            deleter(delist);
+            SDPIGen(verbox.Text, pkgnamebox.Text, ".\\working\\.minecraft\\installinfo");
+            Zippp(".\\working\\.minecraft", ".\\output\\Full_" + verbox.Text + ".sdp");
+            task.Text = "清理...";
+            try
+            {
+                Directory.Delete(".\\working", true);
+            }
+            catch { }
+            task.Text = "完成!";
+            qwq.Enabled = true;
+            status.Text = "[空闲]";
         }
 
         private void deleter(string[] list)
@@ -335,6 +393,7 @@ namespace MCPacker
             catch { }
             task.Text = "完成!";
             qwq.Enabled = true;
+            status.Text = "[空闲]";
         }
 
         private void verbox_TextChanged(object sender, EventArgs e)
@@ -385,6 +444,16 @@ namespace MCPacker
             {
                 launchernamebox.Enabled = true;
             }
+        }
+
+        private void MCPacker_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Environment.Exit(0);
+        }
+
+        private void turntogh_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start("https://github.com/Li3Fish/MCPacker");
         }
     }
 }

@@ -28,8 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MCPacker));
             this.qwq = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.ilaunchercb = new System.Windows.Forms.CheckBox();
+            this.launchernamebox = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.verl = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -45,7 +48,9 @@
             this.iwayselector = new System.Windows.Forms.TrackBar();
             this.label1 = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.label4 = new System.Windows.Forms.Label();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.label5 = new System.Windows.Forms.Label();
             this.delsvrdatbtn = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.delcrptbtn = new System.Windows.Forms.Button();
@@ -56,9 +61,9 @@
             this.taskprog = new System.Windows.Forms.ToolStripProgressBar();
             this.task = new System.Windows.Forms.ToolStripStatusLabel();
             this.bworkerzip = new System.ComponentModel.BackgroundWorker();
-            this.launchernamebox = new System.Windows.Forms.TextBox();
-            this.ilaunchercb = new System.Windows.Forms.CheckBox();
-            this.label4 = new System.Windows.Forms.Label();
+            this.turntogh = new System.Windows.Forms.Button();
+            this.pkgnamebox = new System.Windows.Forms.TextBox();
+            this.pkgnamel = new System.Windows.Forms.Label();
             this.qwq.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.ilistgroup.SuspendLayout();
@@ -83,6 +88,8 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.pkgnamel);
+            this.tabPage1.Controls.Add(this.pkgnamebox);
             this.tabPage1.Controls.Add(this.ilaunchercb);
             this.tabPage1.Controls.Add(this.launchernamebox);
             this.tabPage1.Controls.Add(this.label3);
@@ -102,6 +109,27 @@
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "内置方法";
             this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // ilaunchercb
+            // 
+            this.ilaunchercb.AutoSize = true;
+            this.ilaunchercb.Location = new System.Drawing.Point(89, 114);
+            this.ilaunchercb.Name = "ilaunchercb";
+            this.ilaunchercb.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.ilaunchercb.Size = new System.Drawing.Size(84, 16);
+            this.ilaunchercb.TabIndex = 11;
+            this.ilaunchercb.Text = "包含启动器";
+            this.ilaunchercb.UseVisualStyleBackColor = true;
+            this.ilaunchercb.CheckedChanged += new System.EventHandler(this.ilaunchercb_CheckedChanged);
+            // 
+            // launchernamebox
+            // 
+            this.launchernamebox.Enabled = false;
+            this.launchernamebox.Location = new System.Drawing.Point(179, 111);
+            this.launchernamebox.Name = "launchernamebox";
+            this.launchernamebox.Size = new System.Drawing.Size(100, 21);
+            this.launchernamebox.TabIndex = 10;
+            this.launchernamebox.Text = ".\\launcher.exe";
             // 
             // label3
             // 
@@ -127,7 +155,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(150, 154);
+            this.label2.Location = new System.Drawing.Point(150, 158);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(23, 12);
             this.label2.TabIndex = 7;
@@ -200,6 +228,7 @@
             this.ilistbox.Name = "ilistbox";
             this.ilistbox.Size = new System.Drawing.Size(255, 122);
             this.ilistbox.TabIndex = 0;
+            this.ilistbox.Text = ".minecraft\\logs\r\n.minecraft\\crash-reports\r\n.minecraft\\launcher_profiles.json\r\n";
             // 
             // useworkfloderbox
             // 
@@ -276,8 +305,20 @@
             this.tabPage2.Text = "外置脚本";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("得意黑", 18F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(277, 84);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(108, 29);
+            this.label4.TabIndex = 0;
+            this.label4.Text = "开发中qwq";
+            // 
             // tabPage3
             // 
+            this.tabPage3.Controls.Add(this.turntogh);
+            this.tabPage3.Controls.Add(this.label5);
             this.tabPage3.Controls.Add(this.delsvrdatbtn);
             this.tabPage3.Controls.Add(this.pictureBox1);
             this.tabPage3.Controls.Add(this.delcrptbtn);
@@ -285,18 +326,28 @@
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(680, 151);
+            this.tabPage3.Size = new System.Drawing.Size(680, 187);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "屑工具";
             this.tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.ForeColor = System.Drawing.SystemColors.ControlDark;
+            this.label5.Location = new System.Drawing.Point(7, 169);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(89, 12);
+            this.label5.TabIndex = 4;
+            this.label5.Text = "By LithiumFish";
             // 
             // delsvrdatbtn
             // 
             this.delsvrdatbtn.Location = new System.Drawing.Point(7, 65);
             this.delsvrdatbtn.Name = "delsvrdatbtn";
-            this.delsvrdatbtn.Size = new System.Drawing.Size(100, 23);
+            this.delsvrdatbtn.Size = new System.Drawing.Size(108, 23);
             this.delsvrdatbtn.TabIndex = 3;
-            this.delsvrdatbtn.Text = "删除server.dat";
+            this.delsvrdatbtn.Text = "删除servers.dat";
             this.delsvrdatbtn.UseVisualStyleBackColor = true;
             this.delsvrdatbtn.Click += new System.EventHandler(this.delsvrdatbtn_Click);
             // 
@@ -314,7 +365,7 @@
             // 
             this.delcrptbtn.Location = new System.Drawing.Point(6, 35);
             this.delcrptbtn.Name = "delcrptbtn";
-            this.delcrptbtn.Size = new System.Drawing.Size(101, 23);
+            this.delcrptbtn.Size = new System.Drawing.Size(109, 23);
             this.delcrptbtn.TabIndex = 1;
             this.delcrptbtn.Text = "删除崩溃报告";
             this.delcrptbtn.UseVisualStyleBackColor = true;
@@ -324,7 +375,7 @@
             // 
             this.dellogsbtn.Location = new System.Drawing.Point(6, 6);
             this.dellogsbtn.Name = "dellogsbtn";
-            this.dellogsbtn.Size = new System.Drawing.Size(101, 23);
+            this.dellogsbtn.Size = new System.Drawing.Size(109, 23);
             this.dellogsbtn.TabIndex = 0;
             this.dellogsbtn.Text = "删除日志文件夹";
             this.dellogsbtn.UseVisualStyleBackColor = true;
@@ -340,6 +391,7 @@
             this.statusStrip1.Location = new System.Drawing.Point(0, 228);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Size = new System.Drawing.Size(713, 22);
+            this.statusStrip1.SizingGrip = false;
             this.statusStrip1.TabIndex = 1;
             this.statusStrip1.Text = "statusStrip1";
             // 
@@ -375,36 +427,34 @@
             // 
             this.bworkerzip.DoWork += new System.ComponentModel.DoWorkEventHandler(this.bwokerzip_DoWork);
             // 
-            // launchernamebox
+            // turntogh
             // 
-            this.launchernamebox.Enabled = false;
-            this.launchernamebox.Location = new System.Drawing.Point(179, 111);
-            this.launchernamebox.Name = "launchernamebox";
-            this.launchernamebox.Size = new System.Drawing.Size(100, 21);
-            this.launchernamebox.TabIndex = 10;
-            this.launchernamebox.Text = ".\\launcher.exe";
+            this.turntogh.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.turntogh.Location = new System.Drawing.Point(622, 151);
+            this.turntogh.Name = "turntogh";
+            this.turntogh.Size = new System.Drawing.Size(52, 23);
+            this.turntogh.TabIndex = 5;
+            this.turntogh.Text = "GitHub";
+            this.turntogh.UseVisualStyleBackColor = true;
+            this.turntogh.Click += new System.EventHandler(this.turntogh_Click);
             // 
-            // ilaunchercb
+            // pkgnamebox
             // 
-            this.ilaunchercb.AutoSize = true;
-            this.ilaunchercb.Location = new System.Drawing.Point(89, 114);
-            this.ilaunchercb.Name = "ilaunchercb";
-            this.ilaunchercb.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.ilaunchercb.Size = new System.Drawing.Size(84, 16);
-            this.ilaunchercb.TabIndex = 11;
-            this.ilaunchercb.Text = "包含启动器";
-            this.ilaunchercb.UseVisualStyleBackColor = true;
-            this.ilaunchercb.CheckedChanged += new System.EventHandler(this.ilaunchercb_CheckedChanged);
+            this.pkgnamebox.Location = new System.Drawing.Point(79, 154);
+            this.pkgnamebox.Name = "pkgnamebox";
+            this.pkgnamebox.Size = new System.Drawing.Size(65, 21);
+            this.pkgnamebox.TabIndex = 12;
+            this.pkgnamebox.Visible = false;
             // 
-            // label4
+            // pkgnamel
             // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("得意黑", 18F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(277, 84);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(108, 29);
-            this.label4.TabIndex = 0;
-            this.label4.Text = "开发中qwq";
+            this.pkgnamel.AutoSize = true;
+            this.pkgnamel.Location = new System.Drawing.Point(79, 136);
+            this.pkgnamel.Name = "pkgnamel";
+            this.pkgnamel.Size = new System.Drawing.Size(29, 12);
+            this.pkgnamel.TabIndex = 13;
+            this.pkgnamel.Text = "包名";
+            this.pkgnamel.Visible = false;
             // 
             // MCPacker
             // 
@@ -414,9 +464,11 @@
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.qwq);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "MCPacker";
             this.Text = "MCPacker";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.MCPacker_FormClosed);
             this.Load += new System.EventHandler(this.MCPacker_Load);
             this.qwq.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
@@ -427,6 +479,7 @@
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
             this.tabPage3.ResumeLayout(false);
+            this.tabPage3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
@@ -468,6 +521,10 @@
         private System.Windows.Forms.CheckBox ilaunchercb;
         private System.Windows.Forms.TextBox launchernamebox;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Button turntogh;
+        private System.Windows.Forms.TextBox pkgnamebox;
+        private System.Windows.Forms.Label pkgnamel;
     }
 }
 
